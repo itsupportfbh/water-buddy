@@ -1,0 +1,62 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Water Buddy - Today" Width="900" Height="654" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Background="#F5F8FA" FontFamily="Segoe UI" Foreground="#173F48">
+  <Window.Resources>
+    <Style TargetType="Button">
+      <Setter Property="Cursor" Value="Hand"/><Setter Property="Background" Value="#E8F1F3"/><Setter Property="Foreground" Value="#24535D"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="14,10"/>
+      <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button"><Border x:Name="Face" Background="{TemplateBinding Background}" CornerRadius="12" Padding="{TemplateBinding Padding}"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Face" Property="Opacity" Value="0.8"/></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Face" Property="BorderBrush" Value="#369DAD"/><Setter TargetName="Face" Property="BorderThickness" Value="2"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
+    </Style>
+  </Window.Resources>
+  <Grid Background="#F5F8FA">
+    <Grid.ColumnDefinitions><ColumnDefinition Width="170"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+    <Border Background="#E5F1F1">
+      <Grid Margin="18,24">
+        <StackPanel>
+          <TextBlock Text="Water Buddy" FontFamily="Segoe UI Semibold" FontSize="31" Foreground="#187C87"/>
+          <TextBlock Text="YOUR WATER COMPANION" FontSize="8" Foreground="#688E92" Margin="2,2,0,34"/>
+          <Button x:Name="NavToday" Content="Today" Background="#187C87" Foreground="White" HorizontalContentAlignment="Left" Margin="0,0,0,8"/>
+          <Button x:Name="NavPrefs" Content="Preferences" Background="Transparent" Margin="0,0,0,8"/>
+          <Button x:Name="DashPreview" Content="Meet your buddy" Background="Transparent"/>
+          <Image x:Name="DashboardMascot" Width="112" Height="112" Margin="0,20,0,0" Stretch="Uniform"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom">
+          <Border CornerRadius="16" Background="#F7FCFB" Padding="13" Margin="0,0,0,18"><StackPanel><TextBlock Text="YOUR ROUTINE" FontSize="9" Foreground="#719296"/><TextBlock Text="7 AM - 4 PM" FontSize="15" FontWeight="SemiBold" Margin="0,5,0,2"/><TextBlock Text="A little sip, every hour." FontSize="10" Foreground="#719296" TextWrapping="Wrap"/></StackPanel></Border>
+          <Button x:Name="DashHide" Content="Keep in background" FontSize="10" Background="Transparent"/>
+          <Button x:Name="DashExit" Content="Exit app" FontSize="10" Background="Transparent" Foreground="#7D9193"/>
+        </StackPanel>
+      </Grid>
+    </Border>
+    <Grid Grid.Column="1" Margin="26,22,26,20">
+      <Grid x:Name="TodayPanel">
+        <Grid.RowDefinitions><RowDefinition Height="68"/><RowDefinition Height="318"/><RowDefinition Height="16"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <Grid><StackPanel><TextBlock x:Name="DashDate" FontSize="11" Foreground="#7C9399"/><TextBlock Text="A little water. A better day." FontFamily="Segoe UI Semibold" FontSize="24" Margin="0,4,0,0"/></StackPanel><Border HorizontalAlignment="Right" VerticalAlignment="Top" Background="#E7F1EA" CornerRadius="14" Padding="12,6"><TextBlock x:Name="DashNext" Text="Next: 3:00 PM" FontSize="10" Foreground="#3E7B60"/></Border></Grid>
+        <Grid Grid.Row="1"><Grid.ColumnDefinitions><ColumnDefinition Width="1.15*"/><ColumnDefinition Width="16"/><ColumnDefinition Width="1*"/></Grid.ColumnDefinitions>
+          <Border Background="White" CornerRadius="22" Padding="20,16">
+            <Grid>
+              <TextBlock Text="TODAY'S WATER" FontSize="10" Foreground="#80979D"/>
+              <Grid Width="180" Height="180" VerticalAlignment="Top" Margin="0,25,0,0">
+                <Ellipse Fill="#EDF7FA"/>
+                <Grid><Grid.Clip><EllipseGeometry Center="90,90" RadiusX="90" RadiusY="90"/></Grid.Clip><Rectangle x:Name="WaterFill" Height="70" VerticalAlignment="Bottom"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#72D3DF" Offset="0"/><GradientStop Color="#27A0BE" Offset="1"/></LinearGradientBrush></Rectangle.Fill></Rectangle></Grid>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"><TextBlock x:Name="DashTotal" Text="900" FontFamily="Segoe UI Semibold" FontSize="40" HorizontalAlignment="Center" Foreground="#154F60"/><TextBlock Text="ml logged" FontSize="11" HorizontalAlignment="Center" Foreground="#286A7A"/><TextBlock x:Name="DashPercent" Text="60% of reminder plan" FontSize="9" HorizontalAlignment="Center" Foreground="#286A7A" Margin="0,5,0,0"/></StackPanel>
+              </Grid>
+              <StackPanel VerticalAlignment="Bottom"><TextBlock x:Name="DashPlan" Text="Reminder plan: 1,500 ml" HorizontalAlignment="Center" FontSize="10" Foreground="#78939A" Margin="0,0,0,12"/><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="8"/><ColumnDefinition/><ColumnDefinition Width="8"/><ColumnDefinition/></Grid.ColumnDefinitions><Button x:Name="Log150" Content="+150 ml" Background="#187C87" Foreground="White" FontSize="11" Padding="6,12"/><Button x:Name="Log200" Grid.Column="2" Content="+200 ml" FontSize="11" Padding="6,12"/><Button x:Name="Log250" Grid.Column="4" Content="+250 ml" FontSize="11" Padding="6,12"/></Grid></StackPanel>
+            </Grid>
+          </Border>
+          <Border Grid.Column="2" Background="White" CornerRadius="22" Padding="20,16"><Grid><Grid.RowDefinitions><RowDefinition Height="32"/><RowDefinition Height="*"/><RowDefinition Height="36"/></Grid.RowDefinitions><TextBlock Text="Your sips today" FontFamily="Segoe UI Semibold" FontSize="16"/><ListBox x:Name="DrinkHistory" Grid.Row="1" BorderThickness="0" Background="Transparent" Foreground="#547781" FontSize="12" ScrollViewer.HorizontalScrollBarVisibility="Disabled"><ListBox.ItemContainerStyle><Style TargetType="ListBoxItem"><Setter Property="Padding" Value="3,9"/></Style></ListBox.ItemContainerStyle></ListBox><Button x:Name="DashUndo" Grid.Row="2" Content="Undo last drink" Background="#F1F5F6" FontSize="10"/></Grid></Border>
+        </Grid>
+        <Border Grid.Row="3" CornerRadius="22" Background="White" Padding="20,16"><Grid><Grid.RowDefinitions><RowDefinition Height="30"/><RowDefinition Height="*"/><RowDefinition Height="22"/></Grid.RowDefinitions><Grid><TextBlock Text="One sip at a time" FontFamily="Segoe UI Semibold" FontSize="16"/><TextBlock Text="LAST 7 DAYS" HorizontalAlignment="Right" FontSize="9" Foreground="#849BA1" VerticalAlignment="Center"/></Grid><UniformGrid x:Name="WeekBars" Grid.Row="1" Columns="7"/><TextBlock x:Name="DashFeedback" Grid.Row="2" Text="Log what you actually drink. Your buddy takes care of the reminders." FontSize="10" Foreground="#729098" VerticalAlignment="Bottom"/></Grid></Border>
+      </Grid>
+      <StackPanel x:Name="PrefsPanel" Visibility="Collapsed">
+        <TextBlock Text="Make it your routine" FontFamily="Segoe UI Semibold" FontSize="26" Margin="0,0,0,22"/>
+        <Border CornerRadius="22" Background="White" Padding="24"><StackPanel>
+          <TextBlock Text="Reminder glass size (ml)" FontWeight="SemiBold"/><TextBox x:Name="PrefAmount" Margin="0,8,0,18" Padding="10"/>
+          <TextBlock Text="Reminder plan (ml)" FontWeight="SemiBold"/><TextBox x:Name="PrefPlan" Margin="0,8,0,8" Padding="10"/>
+          <TextBlock Text="A tracking reference you can change, not a personal medical prescription." FontSize="11" Foreground="#7B9298" TextWrapping="Wrap" Margin="0,0,0,20"/>
+          <CheckBox x:Name="PrefSound" Content="Play reminder sound" Margin="0,0,0,16"/>
+          <CheckBox x:Name="PrefStartup" Content="Start when I sign in to Windows" Margin="0,0,0,22"/>
+          <Button x:Name="SavePrefs" Content="Save preferences" Background="#187C87" Foreground="White" HorizontalAlignment="Left"/>
+          <TextBlock x:Name="PrefFeedback" Foreground="#187C87" FontSize="11" Margin="0,12,0,0" TextWrapping="Wrap"/>
+        </StackPanel></Border>
+        <TextBlock Text="Reminders run 7 AM - 4 PM in your computer's local time. The computer must be awake. Follow any fluid limit your clinician has prescribed." Foreground="#7B9298" FontSize="11" TextWrapping="Wrap" Margin="4,20,4,0"/>
+      </StackPanel>
+    </Grid>
+  </Grid>
+</Window>

@@ -1,0 +1,19 @@
+Water Buddy for Windows
+
+Setup installs Water Buddy for your Windows account without administrator access.
+Automatic startup is enabled at sign-in. The bottle buddy appears after installation.
+
+Reminders run hourly from 7 AM to 4 PM in your computer's local time.
+Your PC must be awake and you must be signed in. Closing the browser is fine.
+The app does not wake a sleeping PC or replay missed reminders in a batch.
+
+Already running Water Buddy? Choose Exit from its tray menu before updating.
+Updates keep your drink history and preferences. Desktop and web histories are separate.
+To avoid duplicate reminders, pause the website's reminders when using the desktop app.
+
+Open Water Buddy from the Start menu or its tray icon.
+Disable startup in Preferences. Uninstall from Windows Settings > Apps or
+Uninstall Water Buddy in the Start menu. Saved drink history is retained.
+
+This setup file is unsigned. If your device or company policy blocks it, ask
+your IT administrator to review it. Do not disable security protections.

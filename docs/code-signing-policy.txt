@@ -1,0 +1,18 @@
+Code signing policy — proposed, not yet approved
+
+Current binaries are unsigned. SignPath Foundation has not accepted this project.
+We will not claim SignPath sponsorship or ship purported signed releases until
+approval is granted and the signature is verified.
+
+Planned release process:
+- Public source and build scripts with an OSI-approved license.
+- Builds produced from the published revision in verifiable hosted CI.
+- MFA enabled for repository and signing-service contributors.
+- Named maintainer/reviewer/signing approver added once GitHub owner is known.
+- Each signing request manually approved by an authorized project maintainer.
+- Product/version metadata enforced by SignPath artifact configuration.
+- Verify the signed output and retain its commit reference and SHA256 checksum.
+
+After acceptance, add the required SignPath attribution and actual team links.
+Application requires a public source URL, source-linked release and maintainer
+contact. New projects may not meet the Foundation's reputation requirement.

@@ -1,0 +1,10 @@
+artifacts/
+**/data.json
+**/data.json.*
+**/runtime-status.json
+**/timed-test.json
+**/*preview.png
+*.log
+*.pfx
+*.p12
+.env*

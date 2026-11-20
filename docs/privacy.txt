@@ -1,0 +1,13 @@
+Privacy — Water Buddy desktop
+
+The desktop application stores drink entries, preferences, last reminder time
+and mascot position locally in data.json beside the installed app. It also writes
+local diagnostic status and may preserve backups when saved data cannot be read.
+It does not upload drink history, use analytics, display advertising, or contact
+a remote server for reminders. Opening the external hydration reference link
+uses your browser and the destination site's privacy practices.
+
+The download website and any future GitHub/SignPath services have their own
+privacy policies. Desktop and browser water histories are separate.
+Uninstall retains local history; users can remove the remaining WaterBuddy folder
+after uninstall if they want to erase it. Do not submit your data.json in issues.
