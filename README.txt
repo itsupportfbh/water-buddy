@@ -34,3 +34,8 @@ No SignPath sponsorship or signing approval has been granted at this time.
 See docs\code-signing-policy.txt for the proposed process and remaining steps.
 See docs\privacy.txt for local data behavior. Original project code and included
 mascot assets are offered under the MIT license; see LICENSE.
+
+PUBLIC SOURCE: https://github.com/itsupportfbh/water-buddy
+Builds: https://github.com/itsupportfbh/water-buddy/actions
+Maintainer / reviewer / proposed signing approver: https://github.com/itsupportfbh
+GitHub Actions builds unsigned artifacts from published commits. Signing is not yet configured or approved.

@@ -1,0 +1,27 @@
+name: Build Windows installer
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Build and test
+        shell: pwsh
+        run: |
+          ./build.ps1 -Compiler "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          $hash = (Get-FileHash artifacts/Water-Buddy-Setup.exe -Algorithm SHA256).Hash
+          "$hash  Water-Buddy-Setup.exe" | Set-Content artifacts/SHA256SUMS.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: water-buddy-unsigned
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 30
