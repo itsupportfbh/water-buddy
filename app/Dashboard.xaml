@@ -19,6 +19,7 @@
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom">
           <Border CornerRadius="16" Background="#F7FCFB" Padding="13" Margin="0,0,0,18"><StackPanel><TextBlock Text="YOUR ROUTINE" FontSize="9" Foreground="#719296"/><TextBlock Text="7 AM - 4 PM" FontSize="15" FontWeight="SemiBold" Margin="0,5,0,2"/><TextBlock Text="A little sip, every hour." FontSize="10" Foreground="#719296" TextWrapping="Wrap"/></StackPanel></Border>
+          <Button x:Name="OpenWebDashboard" Content="Open web dashboard" FontSize="10" Background="Transparent" ToolTip="Connect this PC to the website. Allow local network access if your browser asks."/>
           <Button x:Name="DashHide" Content="Keep in background" FontSize="10" Background="Transparent"/>
           <Button x:Name="DashExit" Content="Exit app" FontSize="10" Background="Transparent" Foreground="#7D9193"/>
         </StackPanel>

@@ -1,4 +1,4 @@
-#define AppVersion "1.2.0"
+#define AppVersion "1.3.0"
 #ifdef TestRoot
   #define InstallDir TestRoot + "\app"
   #define StartupDir TestRoot + "\startup"
@@ -48,6 +48,9 @@ Source: "..\app\Dashboard.xaml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\app\mascot-sprites.png"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\app\mascot-sad.png"; DestDir: "{app}"; Flags: ignoreversion
 Source: "setup-info.txt"; DestDir: "{app}"; DestName: "Readme.txt"; Flags: ignoreversion
+
+Source: "..\app\DesktopSync.ps1"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\app\DesktopSync.cs"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{#StartupDir}\Thanni Water Reminder"; Filename: "{sys}\WindowsPowerShell\v1.0\powershell.exe"; Parameters: "-NoProfile -STA -WindowStyle Hidden -ExecutionPolicy Bypass -File ""{app}\WaterReminder.ps1"" -Background"; WorkingDir: "{app}"; Comment: "Water Buddy starts at Windows sign-in"; Flags: runminimized

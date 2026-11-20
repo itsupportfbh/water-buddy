@@ -58,11 +58,17 @@ if (Test-Path -LiteralPath $dataPath) {
         Copy-Item -LiteralPath $dataPath -Destination ($dataPath + '.backup-' + (Get-Date -Format 'yyyyMMddHHmmss'))
     }
 }
+# Give historical drinks permanent identifiers so repeated sync cannot duplicate them.
+$script:data.Entries = @($script:data.Entries | ForEach-Object {
+    @{ Id = $(if ($_.Id) { [string]$_.Id } else { [guid]::NewGuid().ToString() }); Time = $_.Time; Ml = [int]$_.Ml }
+})
+. (Join-Path $PSScriptRoot 'DesktopSync.ps1')
 function Save-Data {
     if ($SmokeTest) { return }
     $temp = $script:dataPath + '.tmp'
     $script:data | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $temp -Encoding UTF8
     Move-Item -LiteralPath $temp -Destination $script:dataPath -Force
+    Publish-DesktopSync
 }
 $script:snoozeUntil = $null
 $script:reminderOpen = $false
@@ -101,7 +107,7 @@ function Add-Button($Text, $X, $Y, $W, $Action) {
     $form.Controls.Add($button)
     return $button
 }
-$null = Add-Label 'WATER BUDDY' 26 18 530 42 25
+$null = Add-Label 'THANNI' 26 18 530 42 25
 $null = Add-Label 'A little water. A healthy habit.' 28 64 530 28 12
 $null = Add-Label 'Every day  |  7:00 AM - 4:00 PM  |  Every hour' 28 100 540 26
 $script:totalLabel = Add-Label '' 28 138 540 40 21
@@ -111,7 +117,7 @@ $notice.ForeColor = [Drawing.Color]::FromArgb(0, 105, 125)
 function Record-Drink([int]$Ml = 0) {
     if ($script:previewOnly) { return }
     if ($Ml -eq 0) { $Ml = [int]$amount.Value }
-    $script:data.Entries = @($script:data.Entries) + @(@{ Time = (Get-Date).ToString('o'); Ml = $Ml })
+    $script:data.Entries = @($script:data.Entries) + @(@{ Id = [guid]::NewGuid().ToString(); Time = (Get-Date).ToString('o'); Ml = $Ml })
     $script:snoozeUntil = $null
     $script:reminderOpen = $false
     $form.TopMost = $false
@@ -597,6 +603,8 @@ $form.Add_FormClosing({
         $tray.ShowBalloonTip(3000, 'Reminders still running', 'Open the tray icon to return. Choose Exit to stop reminders.', [Windows.Forms.ToolTipIcon]::Info)
     }
 })
+Save-Data
+Start-DesktopSync
 . (Join-Path $PSScriptRoot 'Dashboard.ps1')
 Update-View
 $timer.Start()
@@ -703,6 +711,7 @@ if ($SmokeTest) {
 try { [Windows.Forms.Application]::Run($form) }
 finally {
     $timer.Stop()
+    if ($null -ne $script:syncBridge) { $script:syncBridge.Dispose() }
     $animation.Stop()
     $confirmationTimer.Stop()
     $script:exitApp = $true

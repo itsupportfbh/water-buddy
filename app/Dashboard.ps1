@@ -112,3 +112,5 @@ $dashboard.FindName('SavePrefs').Add_Click({
     $dashboard.FindName('PrefFeedback').Text = 'Saved. Your reminders will use these preferences.'
 })
 $dashboard.Add_Closing({ param($sender, $e); if (-not $script:exitApp) { $e.Cancel = $true; $dashboard.Hide() } })
+
+$dashboard.FindName('OpenWebDashboard').Add_Click({ Open-WebDashboard })

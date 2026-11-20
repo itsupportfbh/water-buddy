@@ -8,3 +8,7 @@ artifacts/
 *.pfx
 *.p12
 .env*
+
+sync-identity.json
+data*.json
+

@@ -39,3 +39,8 @@ PUBLIC SOURCE: https://github.com/itsupportfbh/water-buddy
 Builds: https://github.com/itsupportfbh/water-buddy/actions
 Maintainer / reviewer / proposed signing approver: https://github.com/itsupportfbh
 GitHub Actions builds unsigned artifacts from published commits. Signing is not yet configured or approved.
+
+## Desktop-to-website sync (v1.3)
+Open the desktop dashboard and choose **Open web dashboard**, then **Connect this PC** on the website. Allow local network access when the browser asks. The desktop app must stay running. The website imports a read-only snapshot every five seconds while visible, and catches up when reopened. Desktop undo removes the corresponding imported entry; browser drinks remain separate. No history is uploaded to a server. This is same-PC desktop-to-web sync, not cross-device or web-to-desktop sync.
+
+The bridge binds only `127.0.0.1:47831`, validates the production origin and Host, and requires a random 256-bit bearer token. The pairing fragment is removed immediately from the address bar. `sync-identity.json` is private local state: never publish it. Do not share a pairing URL; share the ordinary website URL. Disconnect removes imported desktop data from that browser without deleting desktop history.
